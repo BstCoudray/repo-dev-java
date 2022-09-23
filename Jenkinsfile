@@ -1,11 +1,14 @@
-pipeline {
-    agent any
-    stages {
-        stage('Build') {
-            steps {
-                //git url: 'https://github.com/bstcoudray/repo-dev-java', branch: 'main'
-                checkout scm
+node {
+    def app
+     stage('Clone-checkout'){
+        checkout scm
+     }
+     stage('Build image'){
+        app = docker.build("dev-java/apache")
+     }
+     stage ('Test'){
+        withDockerContainer("dev-java/apache"){ 
+            sh "echo 'bonjour ici java'" 
             }
-        }
-    }
+            }
 }
