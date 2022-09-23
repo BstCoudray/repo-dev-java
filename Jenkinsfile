@@ -4,11 +4,11 @@ node {
         checkout scm
      }
      stage('Build image'){
-        app = docker.build("dev-java/nginx")
+        app = docker.build("dev-java/httpd")
      }
      stage ('Test'){
-        withDockerContainer("dev-java/nginx"){ 
-            sh "echo 'bonjour ici java à partir de nginx'" 
+        withDockerContainer("dev-java/httpd"){ 
+            sh "echo 'bonjour ici java'" 
             }
             }
 }
