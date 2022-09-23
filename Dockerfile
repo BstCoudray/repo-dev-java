@@ -1,2 +1,4 @@
-FROM nginx:latest
-COPY ./index.html /usr/share/nginx/html/index.html
+FROM php:7-apache
+RUN docker-php-ext-install pdo pdo_mysql
+COPY . /var/www/html/
+WORKDIR  /var/www/html
